@@ -1,49 +1,488 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+
 export default function Home() {
+  const [isVisible, setIsVisible] = useState(false);
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
+
+  const testimonials = [
+    {
+      name: "Sarah Chen",
+      role: "Graduate Student",
+      university: "MIT",
+      text: "Education AI transformed how I approach learning. The personalized recommendations helped me improve my grades by 40% in just one semester.",
+      rating: 5
+    },
+    {
+      name: "Dr. Marcus Johnson",
+      role: "University Professor",
+      university: "Stanford",
+      text: "This AI platform has revolutionized my teaching. I can now provide individualized attention to each of my 200+ students effectively.",
+      rating: 5
+    },
+    {
+      name: "Emma Rodriguez",
+      role: "High School Student",
+      university: "Lincoln High",
+      text: "Learning math used to be intimidating, but now it's engaging and fun. The AI tutor adapts to my pace and makes complex concepts simple.",
+      rating: 5
+    }
+  ];
+
+  const features = [
+    {
+      icon: "🧠",
+      title: "AI-Powered Personalization",
+      description: "Adaptive learning paths tailored to each student's unique learning style and pace."
+    },
+    {
+      icon: "📊",
+      title: "Real-Time Analytics",
+      description: "Track progress, identify knowledge gaps, and optimize learning outcomes with detailed insights."
+    },
+    {
+      icon: "🎯",
+      title: "Smart Recommendations",
+      description: "Get intelligent suggestions for study materials, practice problems, and learning strategies."
+    },
+    {
+      icon: "⚡",
+      title: "Instant Feedback",
+      description: "Receive immediate responses and explanations to accelerate your learning journey."
+    },
+    {
+      icon: "🔒",
+      title: "Privacy-First Design",
+      description: "Your data is secure with enterprise-grade encryption and privacy protection."
+    },
+    {
+      icon: "🌍",
+      title: "Multi-Language Support",
+      description: "Learn in your native language with support for 50+ languages and cultures."
+    }
+  ];
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 100);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [testimonials.length]);
+
+  const stats = [
+    { number: "500K+", label: "Students Worldwide" },
+    { number: "98%", label: "Success Rate" },
+    { number: "50+", label: "Languages Supported" },
+    { number: "24/7", label: "AI Tutoring" }
+  ];
+
+  const faqs = [
+    {
+      question: "How does the AI tutoring system work?",
+      answer: "Our AI analyzes your learning patterns, strengths, and weaknesses to create a personalized learning experience. It adapts content difficulty, suggests study methods, and provides targeted feedback."
+    },
+    {
+      question: "Is my personal data secure?",
+      answer: "Absolutely. We use enterprise-grade encryption and follow strict privacy protocols. Your data is never shared with third parties and you maintain full control over your information."
+    },
+    {
+      question: "Can I try it for free?",
+      answer: "Yes! We offer a 14-day free trial with full access to all features. No credit card required to start your learning journey."
+    },
+    {
+      question: "What subjects are covered?",
+      answer: "We cover mathematics, science, languages, programming, and more. Our AI adapts to any subject area and can be customized for specific curricula."
+    },
+    {
+      question: "How much does it cost?",
+      answer: "Our pricing starts at $19/month for students, with discounts available for annual plans. Educational institutions receive special pricing."
+    }
+  ];
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-center gap-8 py-32 px-16 bg-white dark:bg-black">
-        <svg
-          viewBox="0 0 69 26"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="fill-black dark:fill-white"
-        >
-          <path d="M13.7917 24.3604C12.4622 25.3549 10.7895 25.8884 8.82032 25.8884C6.66971 25.8884 4.87412 25.3543 3.47587 24.3604H13.7917Z"></path>
-          <path d="M27.8204 24.3604C26.802 25.2894 25.534 25.8884 24.1756 25.8884C22.4188 25.8884 21.02 25.339 20.108 24.3604H27.8204Z"></path>
-          <path d="M44.5726 24.3604C43.0194 25.3511 41.0762 25.8884 38.8367 25.8884C36.5972 25.8884 34.6541 25.3511 33.1008 24.3604H44.5726Z"></path>
-          <path d="M6.10452 21.7838C6.64469 22.5408 7.32257 23.0964 8.12748 23.4234H2.40008C1.94592 22.9414 1.55318 22.3936 1.22435 21.7838H6.10452Z"></path>
-          <path d="M15.9753 21.7838C15.6457 22.3936 15.2602 22.9415 14.8213 23.4234H11.8608C12.7015 23.0973 13.4264 22.543 14.0227 21.7838H15.9753Z"></path>
-          <path d="M23.2016 21.7838C23.3205 22.5267 23.6272 23.0906 24.0875 23.4234H19.4507C19.2008 22.9377 19.0348 22.3887 18.9611 21.7838H23.2016Z"></path>
-          <path d="M29.6415 21.7838C29.3929 22.3649 29.0672 22.9198 28.6798 23.4234H26.2913C26.809 23.0921 27.2884 22.5303 27.6965 21.7838H29.6415Z"></path>
-          <path d="M34.7756 21.7838C35.1876 22.498 35.7076 23.0447 36.3327 23.4234H31.8901C31.3725 22.9406 30.9182 22.3925 30.5327 21.7838H34.7756Z"></path>
-          <path d="M47.1403 21.7838C46.7548 22.3925 46.3005 22.9406 45.7829 23.4234H41.3477C41.9765 23.0447 42.5011 22.4979 42.9178 21.7838H47.1403Z"></path>
-          <path d="M4.97293 19.2072C5.1237 19.8073 5.31836 20.3552 5.55486 20.8468H0.788749C0.585257 20.3346 0.420002 19.7875 0.293988 19.2072H4.97293Z"></path>
-          <path d="M16.9458 19.2072C16.8042 19.7876 16.6278 20.3347 16.4179 20.8468H14.6376C14.9063 20.3562 15.1356 19.8083 15.3244 19.2072H16.9458Z"></path>
-          <path d="M23.146 20.8468H18.9172V19.2072H23.146V20.8468Z"></path>
-          <path d="M33.879 19.2072C33.9937 19.8097 34.1454 20.3562 34.3337 20.8468H30.0171C30.0067 20.8251 29.9961 20.8035 29.9859 20.7817C29.9802 20.8034 29.9741 20.8251 29.9682 20.8468H28.1326C28.3289 20.3505 28.4984 19.8012 28.6354 19.2072H33.879Z"></path>
-          <path d="M48.2582 19.2072C48.1017 19.7867 47.8998 20.3339 47.6561 20.8468H43.3651C43.5558 20.3562 43.71 19.8097 43.8264 19.2072H48.2582Z"></path>
-          <path d="M4.61127 16.6306C4.63883 17.207 4.69545 17.7543 4.78 18.2703H0.128844C0.056725 17.7466 0.0134713 17.1997 0 16.6306H4.61127Z"></path>
-          <path d="M17.2781 17.2464C17.2423 17.5969 17.1958 17.9383 17.1392 18.2703H15.5758C15.6704 17.8506 15.7479 17.4096 15.8073 16.9484L17.2781 17.2464Z"></path>
-          <path d="M23.146 18.2703H18.9172V16.6306H23.146V18.2703Z"></path>
-          <path d="M33.6225 16.6306C33.6374 17.2111 33.6755 17.7576 33.7361 18.2703H28.8183C28.902 17.7493 28.9618 17.2012 28.9946 16.6306H33.6225Z"></path>
-          <path d="M48.643 16.6306C48.6191 17.199 48.5595 17.7459 48.4664 18.2703H43.9719C44.0335 17.7576 44.072 17.211 44.0873 16.6306H48.643Z"></path>
-          <path d="M23.146 6.89115H28.9193V8.56739H23.146V15.6937H18.9172V8.56739H15.8592L16.4324 14.49L14.9983 14.6762C14.0055 9.75933 13.1963 8.00865 9.8132 7.85966C6.45181 7.85968 4.61542 10.5441 4.592 15.6937H0.00268892C0.175472 9.48821 3.32011 6.14613 8.93079 6.14613C9.77653 6.14614 10.7326 6.25781 11.8725 6.51853C13.152 6.78855 14.2702 6.89115 15.697 6.89115C19.7286 6.89112 21.3074 4.20914 22.0796 0H23.146V6.89115Z"></path>
-          <path d="M38.8367 6.14613C44.6383 6.14616 48.4971 9.86614 48.6497 15.6937H44.092C44.0101 10.6034 42.1785 7.97132 38.8367 7.97128C35.5308 7.97128 33.6998 10.6034 33.618 15.6937H29.0235C29.1761 9.86611 33.0351 6.14613 38.8367 6.14613Z"></path>
-          <path
-            fillRule="evenodd"
-            clipRule="evenodd"
-            d="M58.5142 19.14C59.5559 19.14 60.9024 19.5091 60.9532 22.5701H58.3236C57.7138 22.5701 57.3201 22.734 57.3709 23.3763C57.5233 25.2074 57.9934 25.385 58.6413 25.385C59.3145 25.385 59.937 25.18 60.2545 23.9229C60.28 23.8546 60.4706 23.8545 60.5468 23.8545C60.6103 23.8545 60.8389 23.8546 60.8135 23.9229C60.4197 25.6993 59.6702 26 58.6413 26C57.5996 26 55.9862 25.631 55.9862 22.5701C55.9862 19.4954 57.536 19.14 58.5142 19.14ZM58.5142 19.5773C57.9044 19.5773 57.4217 19.9736 57.3455 22.0917H59.5813C59.5051 19.9737 59.1367 19.5773 58.5142 19.5773Z"
-          ></path>
-          <path d="M63.258 19.2631C63.3215 19.2631 63.3342 19.4543 63.3342 19.509C63.3342 19.55 63.3216 19.7276 63.258 19.7276C62.6737 19.7276 62.7118 20.083 62.8262 20.5066C62.9913 21.1899 63.5121 22.9663 63.6137 23.4309C63.6391 23.5676 63.7662 23.5539 63.817 23.4309L65.0238 20.1786C65.0365 20.124 65.1763 20.124 65.2525 20.124C65.3287 20.124 65.4685 20.124 65.4939 20.1786L66.6625 23.4309C66.7006 23.5539 66.8404 23.5539 66.8658 23.4309L67.6661 20.5203C67.7931 20.083 67.8186 19.7276 67.2342 19.7276C67.1834 19.7276 67.1707 19.5773 67.1707 19.509C67.1707 19.427 67.1834 19.2631 67.2342 19.2631H68.9238C68.9746 19.2631 69 19.427 69 19.509C69 19.5773 68.9746 19.7276 68.9238 19.7276C68.3903 19.7276 68.2378 20.1239 68.1235 20.5339C67.9965 20.9438 66.5613 25.8484 66.5482 25.9043C66.5228 25.959 66.4339 25.959 66.3704 25.959C66.3069 25.959 66.2179 25.9317 66.2052 25.9043C66.1036 25.426 65.0619 22.6247 64.9222 22.1054C64.9095 21.9824 64.7443 21.9824 64.7062 22.1191C64.6554 22.2286 63.3347 25.8485 63.3216 25.9043C63.3089 25.959 63.2326 25.959 63.1564 25.959C63.0802 25.959 63.004 25.959 62.9786 25.9043L61.4033 20.5339C61.2763 20.0693 61.1111 19.7276 60.5649 19.7276C60.5268 19.7276 60.5014 19.591 60.5014 19.509C60.5014 19.4133 60.5268 19.2631 60.5649 19.2631H63.258Z"></path>
-          <path d="M53.2441 19.1264C54.0064 19.1264 55.2766 19.3724 55.2766 21.2718V24.5105C55.2766 24.9204 55.3275 25.3167 55.8991 25.3167C55.9499 25.3167 55.9627 25.4807 55.9627 25.549C55.9627 25.631 55.9499 25.795 55.8991 25.795H53.2823C53.2441 25.795 53.2187 25.6584 53.2187 25.5627C53.2187 25.4671 53.2314 25.3167 53.2823 25.3167C53.8666 25.3167 53.892 24.9204 53.892 24.5105V21.5178C53.892 19.9053 53.4347 19.8507 53.0536 19.8507C52.4184 19.8507 52.2024 20.3699 52.0119 20.7525V24.5105C52.0119 24.9341 52.0627 25.3167 52.6598 25.3167C52.7106 25.3167 52.7233 25.508 52.7233 25.549C52.7233 25.6037 52.6979 25.795 52.6598 25.795H49.8777C49.8269 25.795 49.8015 25.6583 49.8015 25.549C49.8015 25.4671 49.8269 25.3168 49.8777 25.3167C50.6526 25.3167 50.7034 24.9068 50.7034 24.5105V20.5476C50.7034 20.0693 50.5764 19.7413 49.8777 19.7413C49.8269 19.7413 49.8015 19.6047 49.8015 19.4954C49.8015 19.3861 49.8269 19.2631 49.8777 19.2631H51.6308C51.8213 19.2631 51.9611 19.3314 51.9992 19.673C52.0119 19.7687 52.0754 19.796 52.1389 19.7276C52.3422 19.4817 52.6598 19.1264 53.2441 19.1264Z"></path>
-          <path d="M48.0394 25.9621H46.8V24.629H48.0394V25.9621Z"></path>
-        </svg>
-        <div className="flex flex-col items-center text-center">
-          <h1 className="max-w-xs text-2xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            Ready for your first task
-          </h1>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-blue-900 dark:to-indigo-900">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-32">
+        <div className="absolute inset-0 opacity-40">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent"></div>
+          <div className="absolute inset-0" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+          }}></div>
         </div>
-      </main>
+        
+        <div className="relative max-w-7xl mx-auto">
+          <div className={`text-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-full border border-white/20 shadow-lg mb-8">
+              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">🎉 Now serving 500K+ students worldwide</span>
+            </div>
+            
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight mb-6">
+              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                Revolutionize
+              </span>
+              <br />
+              <span className="text-gray-900 dark:text-white">
+                Your Learning Journey
+              </span>
+            </h1>
+            
+            <p className="text-xl sm:text-2xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto mb-12 leading-relaxed">
+              Experience the future of education with AI-powered tutoring, personalized learning paths, and instant feedback. 
+              Join thousands of students achieving their goals faster than ever before.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
+              <button className="group relative overflow-hidden px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800">
+                <span className="relative z-10">Start Free Trial</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </button>
+              
+              <button className="px-8 py-4 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm text-gray-700 dark:text-gray-300 font-semibold rounded-xl border border-white/20 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-700">
+                Watch Demo
+              </button>
+            </div>
+            
+            {/* Stats */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-4xl mx-auto">
+              {stats.map((stat, index) => (
+                <div key={index} className="text-center">
+                  <div className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-2">
+                    {stat.number}
+                  </div>
+                  <div className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-20 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+              Why Choose Our 
+              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"> AI Platform</span>
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Cutting-edge technology meets proven educational methods to deliver results that matter.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {features.map((feature, index) => (
+              <div 
+                key={index}
+                className="group p-8 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl border border-white/20 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+              >
+                <div className="text-4xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
+                  {feature.icon}
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                  {feature.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Social Proof Section */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+              Trusted by 
+              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"> Learners</span>
+              <br />
+              Worldwide
+            </h2>
+          </div>
+          
+          <div className="max-w-4xl mx-auto">
+            <div className="relative">
+              <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-3xl p-8 md:p-12 border border-white/20 shadow-xl">
+                <div className="text-center">
+                  <div className="flex justify-center mb-6">
+                    {[...Array(testimonials[activeTestimonial].rating)].map((_, i) => (
+                      <span key={i} className="text-yellow-400 text-2xl">⭐</span>
+                    ))}
+                  </div>
+                  
+                  <blockquote className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-8 italic leading-relaxed">
+                    “{testimonials[activeTestimonial].text}”
+                  </blockquote>
+                  
+                  <div className="flex items-center justify-center gap-4">
+                    <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
+                      {testimonials[activeTestimonial].name.charAt(0)}
+                    </div>
+                    <div className="text-left">
+                      <div className="font-semibold text-gray-900 dark:text-white">
+                        {testimonials[activeTestimonial].name}
+                      </div>
+                      <div className="text-gray-600 dark:text-gray-400">
+                        {testimonials[activeTestimonial].role}, {testimonials[activeTestimonial].university}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="flex justify-center gap-2 mt-8">
+                {testimonials.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setActiveTestimonial(index)}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      index === activeTestimonial 
+                        ? 'bg-blue-600 w-8' 
+                        : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400'
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Section */}
+      <section className="py-20 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+              Simple, 
+              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"> Transparent</span>
+              <br />
+              Pricing
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Choose the plan that fits your learning goals. All plans include a 14-day free trial.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {/* Student Plan */}
+            <div className="relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-3xl p-8 border border-white/20 shadow-lg">
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Student</h3>
+                <div className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
+                  $19<span className="text-lg font-normal text-gray-600">/month</span>
+                </div>
+                <p className="text-gray-600 dark:text-gray-400">Perfect for individual learners</p>
+              </div>
+              
+              <ul className="space-y-4 mb-8">
+                <li className="flex items-center gap-3">
+                  <span className="text-green-500">✓</span>
+                  <span className="text-gray-700 dark:text-gray-300">AI-powered tutoring</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="text-green-500">✓</span>
+                  <span className="text-gray-700 dark:text-gray-300">Personalized learning paths</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="text-green-500">✓</span>
+                  <span className="text-gray-700 dark:text-gray-300">Real-time feedback</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="text-green-500">✓</span>
+                  <span className="text-gray-700 dark:text-gray-300">Progress analytics</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="text-green-500">✓</span>
+                  <span className="text-gray-700 dark:text-gray-300">Mobile app access</span>
+                </li>
+              </ul>
+              
+              <button className="w-full py-3 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 font-semibold rounded-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-300">
+                Start Free Trial
+              </button>
+            </div>
+            
+            {/* Pro Plan - Featured */}
+            <div className="relative bg-gradient-to-br from-blue-600 to-purple-600 rounded-3xl p-8 text-white shadow-xl transform scale-105">
+              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <span className="bg-yellow-400 text-gray-900 px-4 py-1 rounded-full text-sm font-bold">Most Popular</span>
+              </div>
+              
+              <div className="text-center mb-8 mt-4">
+                <h3 className="text-2xl font-bold mb-2">Pro</h3>
+                <div className="text-4xl font-bold mb-2">
+                  $39<span className="text-lg font-normal">/month</span>
+                </div>
+                <p className="text-blue-100">For serious learners & professionals</p>
+              </div>
+              
+              <ul className="space-y-4 mb-8">
+                <li className="flex items-center gap-3">
+                  <span className="text-green-300">✓</span>
+                  <span>Everything in Student</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="text-green-300">✓</span>
+                  <span>Advanced AI recommendations</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="text-green-300">✓</span>
+                  <span>Offline mode access</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="text-green-300">✓</span>
+                  <span>Priority support</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="text-green-300">✓</span>
+                  <span>Custom study schedules</span>
+                </li>
+              </ul>
+              
+              <button className="w-full py-3 bg-white text-blue-600 font-semibold rounded-xl hover:bg-gray-100 transition-colors duration-300">
+                Start Free Trial
+              </button>
+            </div>
+            
+            {/* Enterprise Plan */}
+            <div className="relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-3xl p-8 border border-white/20 shadow-lg">
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Enterprise</h3>
+                <div className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
+                  Custom
+                </div>
+                <p className="text-gray-600 dark:text-gray-400">For schools & organizations</p>
+              </div>
+              
+              <ul className="space-y-4 mb-8">
+                <li className="flex items-center gap-3">
+                  <span className="text-green-500">✓</span>
+                  <span className="text-gray-700 dark:text-gray-300">Everything in Pro</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="text-green-500">✓</span>
+                  <span className="text-gray-700 dark:text-gray-300">Admin dashboard</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="text-green-500">✓</span>
+                  <span className="text-gray-700 dark:text-gray-300">Bulk user management</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="text-green-500">✓</span>
+                  <span className="text-gray-700 dark:text-gray-300">Custom integrations</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="text-green-500">✓</span>
+                  <span className="text-gray-700 dark:text-gray-300">Dedicated support</span>
+                </li>
+              </ul>
+              
+              <button className="w-full py-3 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 font-semibold rounded-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-300">
+                Contact Sales
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+              Frequently Asked 
+              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"> Questions</span>
+            </h2>
+          </div>
+          
+          <div className="space-y-6">
+            {faqs.map((faq, index) => (
+              <details 
+                key={index}
+                className="group bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl border border-white/20 shadow-lg"
+              >
+                <summary className="flex justify-between items-center p-6 cursor-pointer list-none">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white pr-4">
+                    {faq.question}
+                  </h3>
+                  <span className="text-blue-600 transform group-open:rotate-180 transition-transform duration-300">
+                    ▼
+                  </span>
+                </summary>
+                <div className="px-6 pb-6">
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    {faq.answer}
+                  </p>
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA Section */}
+      <section className="py-20 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600">
+        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
+            Ready to Transform Your Learning?
+          </h2>
+          <p className="text-xl text-blue-100 mb-12 max-w-2xl mx-auto">
+            Join over 500,000 students who have already revolutionized their learning journey with AI-powered education.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <button className="group relative overflow-hidden px-8 py-4 bg-white text-blue-600 font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-white/50">
+              <span className="relative z-10">Start Your Free Trial Today</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-purple-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </button>
+            
+            <div className="text-blue-100">
+              <span className="text-sm">No credit card required</span> • 
+              <span className="text-sm"> 14-day free trial</span> • 
+              <span className="text-sm"> Cancel anytime</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-12 bg-gray-900 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h3 className="text-2xl font-bold mb-4">Education AI</h3>
+            <p className="text-gray-400 mb-6">Revolutionizing learning with artificial intelligence</p>
+            
+            <div className="flex justify-center gap-6 text-sm text-gray-400">
+              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+              <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+              <a href="#" className="hover:text-white transition-colors">Support</a>
+              <a href="#" className="hover:text-white transition-colors">Contact</a>
+            </div>
+            
+            <div className="mt-8 pt-8 border-t border-gray-800 text-center text-sm text-gray-400">
+              © 2024 Education AI. All rights reserved.
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
