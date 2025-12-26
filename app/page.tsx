@@ -117,9 +117,7 @@ export default function Home() {
       <section className="relative overflow-hidden px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-32">
         <div className="absolute inset-0 opacity-40">
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent"></div>
-          <div className="absolute inset-0" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-          }}></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_2px_2px,rgba(156,146,172,0.1)_1px,transparent_0)] bg-[length:60px_60px]"></div>
         </div>
         
         <div className="relative max-w-7xl mx-auto">
